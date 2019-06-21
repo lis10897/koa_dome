@@ -158,11 +158,25 @@ class articleController {
 	/**
 	* 修改用户头像
 	*/
-	static async setUserphoto(ctx){
+	static  setUserphoto(ctx){
 		//let userPost = ctx.request.body; 
 		const file = ctx.request.files.file; // 获取上传文件
-		let json=await operFile.uploadFile(file,'upload');
+		/*
+		let json= operFile.uploadFile(file,'upload');
 		ctx.body=json 
+		*/
+	   operFile.uploadFile(file,'upload').then(res=>{
+		   ctx.body={
+			   code:200,
+			   msg:'上传成功',
+			   data:res
+		   }
+	   }).catch(err=>{
+		   ctx.body={
+			   code:412,
+				msg:'上传失败'
+			 }
+	   })
 		 
 	}
 }
