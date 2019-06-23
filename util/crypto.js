@@ -9,4 +9,6 @@ class consoleFun {
 	} 
 }
 
-module.exports = consoleFun;
+module.exports = {
+	consoleFun
+};

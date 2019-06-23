@@ -2,6 +2,9 @@ const userModel = require("../modules/user");
 
 const consoleFun=require("../util/crypto");
 
+const consoleFun=require("../util/crypto");
+
+const token = require("../util/token");  //token工具类
 
 class userService {
 	/**
@@ -13,6 +16,7 @@ class userService {
 		try{ 
 			let data = await userModel.selectUser(req.username);
 			if(data&&data.length==1&&consoleFun.digest(req.password)==data[0].user_password){ 
+				data[0].token=token.getToken({user_id:data[0].user.id})
 				json.code=200,
 				json.msg='登录成功'
 				json.data=data

@@ -1,6 +1,7 @@
-const userModel = require("../modules/user");
-const userService = require("../service/user"); 
-const operFile = require("../util/operFile"); 
+const userModel = require("../modules/user"); //用户数据操作层 ，应该通过服务层调用，此处穿透了
+const userService = require("../service/user"); //用户服务层
+const operFile = require("../util/operFile");  //文件工具类 ，如需进行较多校验或是数据处理，应在service层进行数据处理后调用
+
 
 
 class articleController {
