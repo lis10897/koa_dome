@@ -13,11 +13,13 @@ class articleController {
 		let userPost = ctx.request.body; 
 		if(userPost.username){ 
 			let data = await userService.login(userPost); 
-			ctx.response.status = 200;
+			ctx.response.status = 200; 
+			
 			ctx.body = {
 				code:data.code,
 				msg:data.msg,
-				data:data.data
+				data:data.data,
+				token:data.user
 			} 
 		}else {
 			ctx.response.status = 416;
@@ -49,10 +51,11 @@ class articleController {
      * 修改密码
      */
     static async setPass(ctx){
+		let token=ctx.request.header['x-token']
         //接收客服端
         let req = ctx.request.body; 
-        if(req.user_id&&req.user_name && req.user_password&& req.new_password){
-			let logindata = await userService.setPass(req); 
+        if(token&&req.user_name && req.user_password&& req.new_password){
+			let logindata = await userService.setPass(req,token); 
 			ctx.response.status = 200;
 			ctx.body = logindata;
         }else { 
