@@ -13,6 +13,7 @@ class articleController {
 		if(userPost.username){ 
 			let data = await userService.login(userPost); 
 			ctx.response.status = 200;
+			ctx.session.userinfo='12333333'
 			ctx.body = {
 				code:data.code,
 				msg:data.msg,
@@ -63,7 +64,6 @@ class articleController {
         }
     }
 
-    
 	/**
 	* 获取用户简介
 	*/
@@ -100,6 +100,8 @@ class articleController {
 	*/
 	static async getUserDetail(ctx){
 		let userPost = ctx.query; 
+		let sessionInfo=ctx.session;
+		console.log('sessionInfo',sessionInfo)
 		if(userPost.user_id){
 			try{ 
 				let data = await userModel.UserDetail(userPost.user_id);

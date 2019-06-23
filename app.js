@@ -7,10 +7,18 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const cors = require('koa-cors')
 const koaBody = require('koa-body')
+const koaSession = require('koa-session')
+const sessionConfig = require('./config/session')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
 const article = require('./routes/article')
+
+//session 
+app.keys = ['some secret hurr'];
+app.use(koaSession(sessionConfig, app));
+//
+
 
 // error handler
 onerror(app)
