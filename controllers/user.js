@@ -13,14 +13,16 @@ class articleController {
 		let userPost = ctx.request.body; 
 		if(userPost.username){ 
 			let data = await userService.login(userPost); 
-			ctx.response.status = 200; 
-			
+			ctx.response.status = 200;  
+			  
 			ctx.body = {
 				code:data.code,
 				msg:data.msg,
 				data:data.data,
-				token:data.user
-			} 
+				token:data.user,
+				ccap:data.ccap,
+				img:data.img
+			}  
 		}else {
 			ctx.response.status = 416;
 			ctx.body = {

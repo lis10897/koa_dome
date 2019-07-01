@@ -34,3 +34,5 @@ class operFile{
 }
 
 module.exports = operFile;
+
+//文件工具. 暂未做文件校验和其他处理,仅仅上传

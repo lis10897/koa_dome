@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const secretKey='lee';
+const jwt = require('jsonwebtoken'); 
+const secretKey='lee'; //秘钥
 class  jwtModule{
 	static  getToken(data){//生成token 
 		//let cert = fs.readFileSync(path.join(__dirname, '../config/rsa_private_key.pem'));//私钥
@@ -38,3 +38,5 @@ class  jwtModule{
 	}
 }
 module.exports =jwtModule;
+
+//token模块  包含token的加密和解密、校验

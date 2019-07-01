@@ -9,3 +9,4 @@ class cryptoModule {
 }
 
 module.exports = cryptoModule;
+//数据加密模块 ,暂未进行加盐处理

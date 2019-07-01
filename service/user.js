@@ -4,13 +4,18 @@ const crypto=require("../util/crypto");
 
 const token = require("../util/token");  //token工具类
 
+const ccap = require("../util/ccap");  //ccap
+
 class userService {
 	/**
 	* 用户登录
 	*/
 	static async login(req){
 		//接收客服端 
+		let img=ccap.get()
+		//console.log(img)
 		let json = {} 
+		json.img=img
 		try{ 
 			let data = await userModel.selectUser(req.username);
 			if(data&&data.length==1&&crypto.digest(req.password)==data[0].user_password){ //判断用户的存在 密码
@@ -28,9 +33,11 @@ class userService {
 			}else if(data&&data.length>1){
 				json.code=411
 				json.msg='账号数据异常'
-			}else{ 
+			}else{
+				
 				json.code=411
 				json.msg='用户名或密码不正确'
+				 
 			}
 			 
 		
